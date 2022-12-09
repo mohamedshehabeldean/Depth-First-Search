@@ -1,0 +1,28 @@
+#DFS using python
+graph={
+    's':['a','b','d'],
+    'a':['c'],
+    'b':['d'],
+    'c':['d','g'],
+    'd':['g']
+}
+def DFS(graph,start,goal):
+    visited=[]
+    queue=[[start]]
+    while queue:
+        path=queue.pop()
+        node=path[-1]
+        if node in visited:
+            continue
+        visited.append(node)
+        if node==goal:
+            return path
+        else:
+            adjacent_nodes=graph.get(node,[])
+            for node2 in adjacent_nodes:
+                new_path=path.copy()
+                new_path.append(node2)
+                queue.append(new_path)
+
+solution=DFS(graph,'s','g')
+print("solution is :",solution)
